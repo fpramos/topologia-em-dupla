@@ -1,0 +1,87 @@
+list
+senha:enable, console, VTY
+dar login 
+criptografar as senhas 
+puxar a chave do ssh
+colocar os ips no router, nos PCs e nos Switchis 
+clocar dominio 
+
+
+
+Sw-01
+
+enable
+conf t
+hostname SW-01
+enable secret Felipe*enable
+ip domain-name 1rede.local
+crypto key generate rsa general-key modulus 1024
+line vty 0 15
+transport input ssh
+password Felipe*vty
+login
+exit
+line console 0
+password Felipe*console
+login
+exit
+ip default-gateway 192.168.0.1
+interface vlan 1
+ip address 192.168.0.254 255.255.255.0
+no shutdown 
+exit
+service password-encryption
+
+
+SW-02
+enable
+conf t
+hostname SW-02
+enable secret Felipe*enable
+ip domain-name 1rede.local
+crypto key generate rsa general-key modulus 1024
+line vty 0 15
+transport input ssh
+password Felipe*vty
+login
+exit
+line console 0
+password Felipe*console
+login
+exit
+ip default-gateway 172.16.0.1 
+interface vlan 1
+ip address 172.16.255.254 255.255.0.0
+no shutdown 
+exit
+service password-encryption
+
+RT-01
+enable
+conf t
+hostname RT-01
+enable secret Felipe*enable
+ip domain-name 1rede.local
+crypto key generate rsa general-key modulus 1024
+line vty 0 15
+transport input ssh
+password Felipe*vty
+login
+exit
+line console 0
+password Felipe*console
+login
+exit
+line console 0
+password Felipe*console
+login
+interface gigabitethernet 0/0
+ip address 192.168.0.1 255.255.255.0
+no shutdown
+exit
+interface gigabitethernet 0/1
+ip address 172.16.0.1 255.255.0.0
+no shutdown 
+exit
+service password-encryption
+
