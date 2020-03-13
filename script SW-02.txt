@@ -1,0 +1,32 @@
+SW-02
+
+enable
+conf t
+hostname SW-02
+enable secret Dupla*enable
+ip domain-name 1rede.local
+crypto key generate rsa general-key modulus 1024
+line vty 0 15
+transport input ssh
+password Felipe*vty
+login
+exit
+line console 0
+password Felipe*console
+login
+exit
+ip default-gateway 172.16.0.1 
+interface vlan 1
+ip address 172.16.255.254 255.255.0.0
+no shutdown 
+exit
+service password-encryption
+username felipe privilege 15 secret felipe*1403
+line console 0
+login local
+exit
+line vty 0 15
+login local 
+exit
+exit 
+wr

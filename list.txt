@@ -1,0 +1,7 @@
+list
+senha:enable, console, VTY (SW-01, SW-02,RT-01)
+dar login em todas as senhas
+criptografar as senhas 
+puxar a chave do ssh 
+colocar os ips no router, nos PCs e nos Switchis 
+clocar dominio 
